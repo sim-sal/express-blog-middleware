@@ -3,10 +3,14 @@
 const express = require('express');
 //dotenv
 const dotenv = require('dotenv').config();
-// controllers
+
+// CONTROLLERS
 const homeController = require("./controllers/home");
-// router
+
+// ROUTERS
 const postsRouter = require("./routers/posts");
+const adminRouter = require("./routers/admin");
+const authRouter = require("./routers/auth");
 
 // MIDDLEWARES
 // error
@@ -34,7 +38,18 @@ app.get("/", homeController.index);
 app.get("/about", homeController.about);
 app.get("/contacts", homeController.contacts);
 
+// rotte relative all'entità post
 app.use("/posts", postsRouter);
+
+// upload
+// ------
+
+// rotte relative all'entità admin
+app.use("/admin", adminRouter);
+
+// rotte relative all'entità auth(login)
+app.use("/", authRouter);
+
 
 // gestione degli errori
 app.use(errorsFormatterMiddleware);
