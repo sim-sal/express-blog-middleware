@@ -48,15 +48,15 @@ function index(req, res) {
 
 // show
 function show(req, res) {
-    // recupero l'id dalla richiesta
-    const postId = req.params.id;
+    // recupero lo slug dalla richiesta
+    const postSlug = req.params.slug;
 
     // recupero il post dalla lista
-    const post = mieiPosts.find(post => post.id == postId);
+    const post = mieiPosts.find(post => post.slug == postSlug);
 
-    // verifico se l'id non esiste, lancio lo status 404
+    // verifico se lo slug non esiste, lancio lo status 404
     if (!post) {
-        res.status(404).send(`Il Post con id ${postId} non esiste!`);
+        res.status(404).send(`Il Post con lo slug ${postSlug} non esiste!`);
         return; //interrompo esecuzione della funzione
     }
 

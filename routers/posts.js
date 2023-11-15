@@ -18,7 +18,7 @@ const postsController = require("../controllers/postsController");
 router.get("/", postsController.index);
 
 // show
-router.get("/:id", postsController.show);
+router.get("/:slug", postsController.show);
 
 // create
 router.post("/create", postsController.create);
