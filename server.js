@@ -8,9 +8,13 @@ const homeController = require("./controllers/home");
 // router
 const postsRouter = require("./routers/posts");
 
-// middleware
+// MIDDLEWARES
+// error
 const errorsFormatterMiddleware = require("./middlewares/errorsFormatter");
+// log
 const routesLoggerMiddleware = require('./middlewares/routesLogger');
+// 404
+const routeNotFoundMiddleware = require('./middlewares/routeNotFound');
 
 // creiamo l'istanza di express
 const app = express();
@@ -34,6 +38,9 @@ app.use("/posts", postsRouter);
 
 // gestione degli errori
 app.use(errorsFormatterMiddleware);
+
+// middleware 404
+app.use(routeNotFoundMiddleware);
 
 // avviamo il nostro server mettendolo in ascolto
 app.listen(process.env.PORT || 3001, () => {
