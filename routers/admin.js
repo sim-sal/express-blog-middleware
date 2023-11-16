@@ -4,6 +4,10 @@ const express = require("express");
 const router = express.Router();
 // importo il controller
 const adminController = require("../controllers/adminController");
+const authenticateMiddleware = require("../middlewares/authenticate");
+
+// importo middleware per l'autenticazione
+router.use(authenticateMiddleware);
 
 // creo la rotta
 router.get("/", adminController.index);

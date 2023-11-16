@@ -10,6 +10,8 @@ const router = express.Router();
 // importo il controller
 const postsController = require("../controllers/postsController");
 
+const authenticateMiddleware = require("../middlewares/authenticate");
+
 
 
 // CREO LE ROTTE
@@ -24,7 +26,7 @@ router.get("/:slug", postsController.show);
 router.post("/create", postsController.create);
 
 // store
-router.post("/", multer().none(), postsController.store);
+router.post("/", authenticateMiddleware, multer().none(), postsController.store);
 
 // download immagine
 // router.get("/:id/download", postsController.show);
